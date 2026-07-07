@@ -13,6 +13,7 @@ This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn 
 
 ## What's covered
 
+<!-- PRACTICES_TABLE:START -->
 | # | File | Topic | Verified result |
 |---|------|-------|------------------|
 | 1 | [`1st_Practice.sql`](1st_Practice.sql) | SQL basics: filter, join, aggregate, CTE, window functions | 7 queries against TPCH_SF1 sample data (customer/orders/nation) |
@@ -25,6 +26,9 @@ This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn 
 | 8 | [`8th_Practice_Snowpark.py`](8th_Practice_Snowpark.py) | Snowpark: Python DataFrame API (filter/group_by/agg, window functions, lazy query plans) | Same rollup + top-3-per-city ranking as practice 1, expressed as chained DataFrame calls instead of SQL text; `.queries` used to confirm the generated SQL is pushed down, not computed client-side |
 | 9 | [`9th_Practice_QueryProfile_Performance.sql`](9th_Practice_QueryProfile_Performance.sql) | Query Profile (operator tree, bytes/partitions scanned), warehouse sizing, partition pruning | X-Small -> Small on the same 14M-row `CROSS JOIN`: 864ms -> 117ms (~7.4x); confirmed a ~3.7k-row table lives in a single micro-partition, so no `WHERE` clause can reduce partitions scanned |
 | 10 | [`10th_Practice_Cost_Monitoring.sql`](10th_Practice_Cost_Monitoring.sql) | Cost & usage monitoring: `WAREHOUSE_METERING_HISTORY`, resource monitors via `SHOW` + `RESULT_SCAN`, `ACCOUNT_USAGE.QUERY_HISTORY` | Verified the Day-1 `LEARNING_MONITOR` guardrails (50 credit quota, notify/suspend at 50%/75%/100%) are still active at 2.13 of 50 credits used |
+<!-- PRACTICES_TABLE:END -->
+
+The table above is generated from [`practices.json`](practices.json) by [`scripts/generate_readme_table.py`](scripts/generate_readme_table.py), auto-run by a GitHub Action on every push that touches `practices.json` - add a new practice by editing the JSON, not the markdown.
 
 The Streamlit dashboard's actual application code lives in [`streamlit_app/streamlit_app.py`](streamlit_app/streamlit_app.py).
 
@@ -104,3 +108,4 @@ Files are numbered in the order they were completed, each following the same lec
 ---
 
 **CI:** [![Lint](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml) — SQL parse-check (SQLFluff, Snowflake dialect) + Python syntax check on every push.
+[![Sync README](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/sync-readme.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/sync-readme.yml) — practices table auto-generated from `practices.json`.
