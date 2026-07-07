@@ -1,6 +1,6 @@
 # Snowflake A-Z
 
-Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-recovery mechanics, automation, access control, and a native Streamlit dashboard - built during a 30-day Snowflake trial.
+Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-recovery mechanics, automation, access control, the Python DataFrame API (Snowpark), and a native Streamlit dashboard - built during a 30-day Snowflake trial.
 
 ![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -22,6 +22,7 @@ This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn 
 | 5 | [`5th_Practice_Streamlit_Capstone.py`](5th_Practice_Streamlit_Capstone.py) | Native Streamlit-in-Snowflake app build/deploy process | Interactive dashboard built and deployed (see below) |
 | 6 | [`6th_Practice_Streams_Tasks.sql`](6th_Practice_Streams_Tasks.sql) | Streams (CDC) + Tasks (scheduled/triggered automation) | Stream captured 2 inserted rows, a task moved them into a change log, stream drained to 0 |
 | 7 | [`7th_Practice_RBAC.sql`](7th_Practice_RBAC.sql) | Role-based access control, least privilege | Custom read-only role: `SELECT` succeeded, `INSERT` correctly rejected |
+| 8 | [`8th_Practice_Snowpark.py`](8th_Practice_Snowpark.py) | Snowpark: Python DataFrame API (filter/group_by/agg, window functions, lazy query plans) | Same rollup + top-3-per-city ranking as practice 1, expressed as chained DataFrame calls instead of SQL text; `.queries` used to confirm the generated SQL is pushed down, not computed client-side |
 
 The Streamlit dashboard's actual application code lives in [`streamlit_app/streamlit_app.py`](streamlit_app/streamlit_app.py).
 
@@ -36,6 +37,8 @@ flowchart LR
     B --> F["TRIPS_ANALYST_ROLE<br/>SELECT-only<br/>Practice 7"]
     B --> G["Streamlit App<br/>Practice 5"]
     G --> H(["Interactive dashboard"])
+    B --> I["Snowpark DataFrame API<br/>Practice 8"]
+    I --> J(["Python-native queries<br/>(same engine, no SQL text)"])
 ```
 
 ## Dashboard
@@ -63,7 +66,7 @@ Built on `driver_lifetime_trips` (3,745 rows, loaded in practice 4): a city filt
 
 - Snowflake (Standard Edition, AWS us-east-2)
 - SQL (Snowflake dialect)
-- Python + Streamlit (native Streamlit-in-Snowflake)
+- Python + Snowpark + Streamlit (native Streamlit-in-Snowflake)
 - pandas
 
 ## Naming convention
