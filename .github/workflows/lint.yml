@@ -33,4 +33,5 @@ jobs:
         run: |
           python -m py_compile 5th_Practice_Streamlit_Capstone.py
           python -m py_compile streamlit_app/streamlit_app.py
+          python -m py_compile 8th_Practice_Snowpark.py
           echo "Python files compile cleanly"
