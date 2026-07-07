@@ -29,12 +29,12 @@ The Streamlit dashboard's actual application code lives in [`streamlit_app/strea
 
 ```mermaid
 flowchart LR
-    A[("driver_lifetime_trips.csv")] -->|"Upload wizard&#10;Practice 4"| B[("driver_lifetime_trips&#10;table")]
-    B --> C{{"Stream&#10;trips_stream&#10;Practice 6"}}
-    C --> D["Task&#10;log_trip_changes_task"]
-    D --> E[("trips_change_log&#10;table")]
-    B --> F["TRIPS_ANALYST_ROLE&#10;SELECT-only&#10;Practice 7"]
-    B --> G["Streamlit App&#10;Practice 5"]
+    A[("driver_lifetime_trips.csv")] -->|"Upload wizard<br/>Practice 4"| B[("driver_lifetime_trips<br/>table")]
+    B --> C{{"Stream<br/>trips_stream<br/>Practice 6"}}
+    C --> D["Task<br/>log_trip_changes_task"]
+    D --> E[("trips_change_log<br/>table")]
+    B --> F["TRIPS_ANALYST_ROLE<br/>SELECT-only<br/>Practice 7"]
+    B --> G["Streamlit App<br/>Practice 5"]
     G --> H(["Interactive dashboard"])
 ```
 
