@@ -6,6 +6,7 @@ on:
     paths:
       - "practices.json"
       - "scripts/generate_readme_table.py"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
