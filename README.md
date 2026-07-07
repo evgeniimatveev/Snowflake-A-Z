@@ -2,7 +2,6 @@
 
 Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-recovery mechanics, automation, access control, and a native Streamlit dashboard - built during a 30-day Snowflake trial.
 
-[![Lint](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml)
 ![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -10,7 +9,7 @@ Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-
 
 ## Why this repo has no live demo
 
-This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn the platform - not a production account kept running indefinitely. Every script here was executed for real against a live Snowflake account and verified before being committed. Once the trial period ends the account is not renewed, so there is no persistent hosted dashboard to link to - the code and the verified results captured along the way are the proof of work.
+This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn the platform - not a production account kept running indefinitely. Every script here was executed for real against a live Snowflake account and verified before being committed. Once the trial period ends the account is not renewed, so there is no persistent hosted dashboard to link to - the code and the verified results (including the screenshots below) captured along the way are the proof of work.
 
 ## What's covered
 
@@ -26,13 +25,39 @@ This was a deliberate 30-day / $400-credit Snowflake trial used purely to learn 
 
 The Streamlit dashboard's actual application code lives in [`streamlit_app/streamlit_app.py`](streamlit_app/streamlit_app.py).
 
+## Architecture
+
+```mermaid
+flowchart LR
+    A[("driver_lifetime_trips.csv")] -->|"Upload wizard&#10;Practice 4"| B[("driver_lifetime_trips&#10;table")]
+    B --> C{{"Stream&#10;trips_stream&#10;Practice 6"}}
+    C --> D["Task&#10;log_trip_changes_task"]
+    D --> E[("trips_change_log&#10;table")]
+    B --> F["TRIPS_ANALYST_ROLE&#10;SELECT-only&#10;Practice 7"]
+    B --> G["Streamlit App&#10;Practice 5"]
+    G --> H(["Interactive dashboard"])
+```
+
 ## Dashboard
 
 Built on `driver_lifetime_trips` (3,745 rows, loaded in practice 4): a city filter drives three KPI metrics and two bar charts, backed entirely by `st.connection("snowflake").session().sql(...)` - no external database, no separate auth.
 
+<p align="center">
+  <img src="screenshots/dashboard_metrics.png" width="700" alt="Dashboard header and KPI metrics" />
+</p>
+
 - **All cities:** 3,745 trips · $71,508.53 total fare · 11.52 mi avg distance
 - **Filtered to Los Angeles:** 2,155 trips · $42,547.87 · 8.08 mi
 - **Filtered to Ventura:** 6 trips · $82.48 · 5.63 mi
+
+<p align="center">
+  <img src="screenshots/dashboard_trips_by_city.png" width="46%" alt="Trips by city bar chart" />
+  <img src="screenshots/dashboard_fare_by_city.png" width="46%" alt="Total fare by city bar chart" />
+</p>
+
+<p align="center">
+  <img src="screenshots/dashboard_underlying_data.png" width="700" alt="Underlying data table" />
+</p>
 
 ## Stack
 
@@ -44,3 +69,7 @@ Built on `driver_lifetime_trips` (3,745 rows, loaded in practice 4): a city filt
 ## Naming convention
 
 Files are numbered in the order they were completed, each following the same lecture format: a header banner explaining the goal, a `SETUP` block restoring session context, lettered `PART` sections with a "Use case" explanation before every query, and a `RECAP` at the end summarizing the takeaways.
+
+---
+
+**CI:** [![Lint](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml) — SQL parse-check (SQLFluff, Snowflake dialect) + Python syntax check on every push.
