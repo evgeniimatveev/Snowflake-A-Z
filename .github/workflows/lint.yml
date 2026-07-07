@@ -1,0 +1,36 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install SQLFluff
+        run: pip install sqlfluff
+
+      - name: Parse-check all SQL files (Snowflake dialect)
+        continue-on-error: true
+        run: |
+          for f in *.sql; do
+            echo "::group::Parsing $f"
+            sqlfluff parse "$f" --dialect snowflake > /dev/null && echo "OK: $f" || echo "WARN: $f had parser warnings (non-blocking)"
+            echo "::endgroup::"
+          done
+
+      - name: Check Python syntax
+        run: |
+          python -m py_compile 5th_Practice_Streamlit_Capstone.py
+          python -m py_compile streamlit_app/streamlit_app.py
+          echo "Python files compile cleanly"
