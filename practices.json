@@ -1,0 +1,62 @@
+[
+  {
+    "num": 1,
+    "file": "1st_Practice.sql",
+    "topic": "SQL basics: filter, join, aggregate, CTE, window functions",
+    "result": "7 queries against TPCH_SF1 sample data (customer/orders/nation)"
+  },
+  {
+    "num": 2,
+    "file": "2nd_Practice_S3_Ingestion.sql",
+    "topic": "External stage + `COPY INTO` from S3, semi-structured data (`VARIANT`, `LATERAL FLATTEN`)",
+    "result": "100 rows loaded from a public S3 bucket, 0 errors"
+  },
+  {
+    "num": 3,
+    "file": "3rd_Practice_TimeTravel_Clone.sql",
+    "topic": "Time Travel, DROP + UNDROP, zero-copy clone",
+    "result": "Restored deleted rows via `AT(OFFSET)`, undropped a table, proved clone independence (90 vs 100 rows)"
+  },
+  {
+    "num": 4,
+    "file": "4th_Practice_CSV_Upload.sql",
+    "topic": "Local CSV upload wizard (UI path, not `COPY INTO`)",
+    "result": "3,745 real rows loaded from a personal Uber-trips dataset"
+  },
+  {
+    "num": 5,
+    "file": "5th_Practice_Streamlit_Capstone.py",
+    "topic": "Native Streamlit-in-Snowflake app build/deploy process",
+    "result": "Interactive dashboard built and deployed (see below)"
+  },
+  {
+    "num": 6,
+    "file": "6th_Practice_Streams_Tasks.sql",
+    "topic": "Streams (CDC) + Tasks (scheduled/triggered automation)",
+    "result": "Stream captured 2 inserted rows, a task moved them into a change log, stream drained to 0"
+  },
+  {
+    "num": 7,
+    "file": "7th_Practice_RBAC.sql",
+    "topic": "Role-based access control, least privilege",
+    "result": "Custom read-only role: `SELECT` succeeded, `INSERT` correctly rejected"
+  },
+  {
+    "num": 8,
+    "file": "8th_Practice_Snowpark.py",
+    "topic": "Snowpark: Python DataFrame API (filter/group_by/agg, window functions, lazy query plans)",
+    "result": "Same rollup + top-3-per-city ranking as practice 1, expressed as chained DataFrame calls instead of SQL text; `.queries` used to confirm the generated SQL is pushed down, not computed client-side"
+  },
+  {
+    "num": 9,
+    "file": "9th_Practice_QueryProfile_Performance.sql",
+    "topic": "Query Profile (operator tree, bytes/partitions scanned), warehouse sizing, partition pruning",
+    "result": "X-Small -> Small on the same 14M-row `CROSS JOIN`: 864ms -> 117ms (~7.4x); confirmed a ~3.7k-row table lives in a single micro-partition, so no `WHERE` clause can reduce partitions scanned"
+  },
+  {
+    "num": 10,
+    "file": "10th_Practice_Cost_Monitoring.sql",
+    "topic": "Cost & usage monitoring: `WAREHOUSE_METERING_HISTORY`, resource monitors via `SHOW` + `RESULT_SCAN`, `ACCOUNT_USAGE.QUERY_HISTORY`",
+    "result": "Verified the Day-1 `LEARNING_MONITOR` guardrails (50 credit quota, notify/suspend at 50%/75%/100%) are still active at 2.13 of 50 credits used"
+  }
+]
