@@ -58,5 +58,11 @@
     "file": "10th_Practice_Cost_Monitoring.sql",
     "topic": "Cost & usage monitoring: `WAREHOUSE_METERING_HISTORY`, resource monitors via `SHOW` + `RESULT_SCAN`, `ACCOUNT_USAGE.QUERY_HISTORY`",
     "result": "Verified the Day-1 `LEARNING_MONITOR` guardrails (50 credit quota, notify/suspend at 50%/75%/100%) are still active at 2.13 of 50 credits used"
+  },
+  {
+    "num": 11,
+    "file": "11th_Practice_Dynamic_Tables.sql",
+    "topic": "Dynamic Tables: declarative, incrementally-refreshed pipelines (alternative to Streams + Tasks)",
+    "result": "Inserted + deleted a test city; the automatic background refresh (TARGET_LAG=1 minute) had already applied both changes before a manual REFRESH ran, reporting \"No new data\". Refresh history showed 96.6% NO_DATA / 3.4% INCREMENTAL across 88 checks."
   }
 ]
