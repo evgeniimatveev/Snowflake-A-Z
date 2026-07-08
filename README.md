@@ -110,5 +110,5 @@ Files are numbered in the order they were completed, each following the same lec
 
 ---
 
-**CI:** [![Lint](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml) — SQL parse-check (SQLFluff, Snowflake dialect) + Python syntax check on every push.
+[![Lint](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/lint.yml) — SQL parse-check (SQLFluff, Snowflake dialect) + Python syntax check on every push.
 [![Sync README](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/sync-readme.yml/badge.svg)](https://github.com/evgeniimatveev/Snowflake-A-Z/actions/workflows/sync-readme.yml) — practices table auto-generated from `practices.json`.
