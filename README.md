@@ -1,6 +1,6 @@
 # Snowflake A-Z
 
-Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-recovery mechanics, automation, access control, the Python DataFrame API (Snowpark), query performance tuning, and cost/usage monitoring - built during a 30-day Snowflake trial.
+Hands-on Snowflake practice covering SQL fundamentals, data ingestion, disaster-recovery mechanics, automation (Streams/Tasks and Dynamic Tables), access control, the Python DataFrame API (Snowpark), query performance tuning, and cost/usage monitoring - built during a 30-day Snowflake trial.
 
 ![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -50,6 +50,8 @@ flowchart LR
     K --> L(["7.4x speedup: X-Small -> Small"])
     B --> M["Cost & Usage Monitoring<br/>Practice 10"]
     M --> N(["WAREHOUSE_METERING_HISTORY +<br/>Resource Monitor verified via SQL"])
+    B --> O["Dynamic Table<br/>Practice 11"]
+    O --> P(["Auto-refresh beat a manual REFRESH to the punch"])
 ```
 
 ## Dashboard
