@@ -1,0 +1,18 @@
+# local secrets: never commit credentials
+.env
+.env.*
+.streamlit/secrets.toml
+*.p8
+*.pem
+.snowflake/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
